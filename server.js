@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const i18n = require('i18n');
@@ -92,6 +93,4 @@ app.use('/client', clientRoutes);
 app.use('/auth', authRoute);
 app.use('/cv', cvRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+module.exports.handler = serverless(app);
