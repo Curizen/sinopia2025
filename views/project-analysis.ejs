@@ -1,0 +1,117 @@
+<div class="max-w-7xl mx-auto my-10 p-6 bg-white rounded-3xl shadow-2xl">
+
+  <div class="mb-10">
+    <h1 class="text-4xl font-bold text-orange-600 mb-2">E-commerce Platform</h1>
+    <p class="text-gray-600 text-lg mb-1">Problem: Need a platform for online sales and inventory management.</p>
+    <p class="text-gray-500">Description: Build a full-featured e-commerce web application with user accounts, product catalog, payment integration, and admin dashboard.</p>
+  </div>
+
+  <div class="space-y-4">
+
+    <div class="border-l-4 border-orange-500 pl-4">
+      <button class="w-full text-left flex justify-between items-center py-2 px-3 bg-orange-100 rounded-lg shadow hover:bg-orange-200 focus:outline-none usecase-btn">
+        <span class="font-bold text-xl">Use Case: User Account Management</span>
+        <span class="text-orange-600">▼</span>
+      </button>
+      <div class="ml-6 mt-2 space-y-3 usecase-content">
+
+        <div class="border-l-2 border-gray-300 pl-4">
+          <button class="w-full text-left flex justify-between items-center py-1 px-2 bg-gray-100 rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none case-btn">
+            <span class="font-semibold">Case: User Registration & Login</span>
+            <span class="text-gray-600">▼</span>
+          </button>
+          <div class="ml-4 mt-2 space-y-2 case-content">
+
+            <div class="p-3 bg-white rounded-lg shadow flex flex-col space-y-1">
+              <span class="font-medium">Task: Create Registration Form</span>
+              <p class="text-gray-500 text-sm">Description: Build a registration form with validation.</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">HTML - Available ✅ - Level 4/5</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">CSS - Available ✅ - Level 3/5</span>
+                <span class="px-2 py-1 bg-red-100 text-red-800 rounded">JavaScript - Not Available ❌ - Level 0/5</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-white rounded-lg shadow flex flex-col space-y-1">
+              <span class="font-medium">Task: Implement Login System</span>
+              <p class="text-gray-500 text-sm">Allow users to log in securely with JWT authentication.</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">Node.js - Available ✅ - Level 5/5</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">JWT - Available ✅ - Level 4/5</span>
+                <span class="px-2 py-1 bg-red-100 text-red-800 rounded">MongoDB - Not Available ❌ - Level 0/5</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="border-l-2 border-gray-300 pl-4">
+          <button class="w-full text-left flex justify-between items-center py-1 px-2 bg-gray-100 rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none case-btn">
+            <span class="font-semibold">Case: User Profile Management</span>
+            <span class="text-gray-600">▼</span>
+          </button>
+          <div class="ml-4 mt-2 space-y-2 case-content">
+            <div class="p-3 bg-white rounded-lg shadow flex flex-col space-y-1">
+              <span class="font-medium">Task: Edit Profile</span>
+              <p class="text-gray-500 text-sm">Allow users to update personal info.</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">React - Available ✅ - Level 3/5</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">CSS - Available ✅ - Level 4/5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="border-l-4 border-orange-500 pl-4">
+      <button class="w-full text-left flex justify-between items-center py-2 px-3 bg-orange-100 rounded-lg shadow hover:bg-orange-200 focus:outline-none usecase-btn">
+        <span class="font-bold text-xl">Use Case: Product Catalog & Shopping Cart</span>
+        <span class="text-orange-600">▼</span>
+      </button>
+      <div class="ml-6 mt-2 space-y-3 usecase-content">
+
+        <div class="border-l-2 border-gray-300 pl-4">
+          <button class="w-full text-left flex justify-between items-center py-1 px-2 bg-gray-100 rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none case-btn">
+            <span class="font-semibold">Case: Product Listing</span>
+            <span class="text-gray-600">▼</span>
+          </button>
+          <div class="ml-4 mt-2 space-y-2 case-content">
+            <div class="p-3 bg-white rounded-lg shadow flex flex-col space-y-1">
+              <span class="font-medium">Task: Display Products</span>
+              <p class="text-gray-500 text-sm">Show all products with filtering and search.</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">React - Available ✅ - Level 5/5</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded">CSS - Available ✅ - Level 4/5</span>
+                <span class="px-2 py-1 bg-red-100 text-red-800 rounded">API - Not Available ❌ - Level 0/5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.usecase-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      content.classList.toggle('hidden');
+      const arrow = btn.querySelector('span:last-child');
+      arrow.textContent = content.classList.contains('hidden') ? '►' : '▼';
+    });
+  });
+
+  document.querySelectorAll('.case-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      content.classList.toggle('hidden');
+      const arrow = btn.querySelector('span:last-child');
+      arrow.textContent = content.classList.contains('hidden') ? '►' : '▼';
+    });
+  });
+</script>

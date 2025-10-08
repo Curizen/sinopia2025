@@ -1,0 +1,287 @@
+<head>
+  <style>
+  /* الرسائل العامة */
+  .chat-bubble {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: transform 0.2s ease;
+  }
+  .chat-bubble.user {
+    background: linear-gradient(135deg, #fb923c, #f97316);
+    color: white;
+    align-self: flex-end;
+  }
+  .chat-bubble.bot {
+    background: white;
+    color: #374151;
+    align-self: flex-start;
+  }
+  .chat-bubble:hover {
+    transform: scale(1.02);
+  }
+
+  /* بطاقة المهارة */
+  .skill-card {
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+  }
+  .skill-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+  .skill-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .skill-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #111827;
+  }
+  .skill-meta {
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+  .skill-desc {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 6px;
+  }
+  .skill-footer {
+    display: flex;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  .skill-footer div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+</style>
+</head>
+<% if (role == "employer") { %>
+  <div id="sinopia-chat" class="fixed bottom-6 right-4 z-50">
+    <!-- Floating button -->
+    <button id="chat-toggle" aria-label="Open chat"
+      class="w-16 h-16 rounded-full shadow-lg bg-gradient-to-tr from-orange-500 to-orange-600 text-white flex items-center justify-center text-2xl">
+      <i id="chat-toggle-icon" class="fas fa-comment-dots"></i>
+    </button>
+
+    <!-- Chat panel -->
+    <div id="chat-panel" class="hidden bg-white rounded-2xl shadow-2xl mt-3 overflow-hidden flex flex-col
+        w-full sm:w-[90vw] md:w-[400px] lg:w-[500px] h-auto md:h-[600px]">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between px-4 py-3 border-b">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">S</div>
+          <div>
+            <div class="font-semibold"><%= __('chatbot.title') %></div>
+            <div class="text-xs text-gray-500"><%= __('chatbot.sub_title') %></div>
+          </div>
+        </div>
+        <button id="chat-close" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- Messages area -->
+      <div id="chat-messages" class="flex-1 p-4 overflow-auto space-y-3 bg-gray-50"></div>
+
+      <!-- Input -->
+      <form id="chat-form" class="px-3 py-3 border-t bg-white/90 backdrop-blur-md">
+        <div class="flex items-center gap-2 bg-gray-100 rounded-full px-3 py-2 shadow-inner focus-within:ring-2 focus-within:ring-orange-300 transition-all duration-200">
+          <input id="chat-input" type="text" autocomplete="off" placeholder="Type your message..."
+            class="flex-1 bg-transparent border-none focus:outline-none px-2 text-gray-700 placeholder-gray-400 text-sm" />
+          <button id="chat-send" type="submit"
+            class="flex items-center justify-center bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-full shadow-md hover:from-orange-600 hover:to-orange-700 transition-all duration-200">
+            <i class="fas fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+        <div id="chat-status" class="text-xs text-red-500 mt-2 hidden"></div>
+      </form>
+    </div>
+  </div>
+<% } %>
+
+
+<script>
+(() => {
+  const toggle = document.getElementById('chat-toggle');
+  const panel = document.getElementById('chat-panel');
+  const closeBtn = document.getElementById('chat-close');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const messages = document.getElementById('chat-messages');
+  const status = document.getElementById('chat-status');
+
+  const HISTORY_KEY = 'sinopia_chat_history';
+  const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+
+  function addMessage({ from = 'bot', content = null, rawText = '', loading = false }) {
+    const wrap = document.createElement('div');
+    wrap.className = from === 'user' ? 'flex justify-end' : 'flex justify-start';
+
+    const bubble = document.createElement('div');
+    bubble.className =
+      (from === 'user' ? 'bg-orange-600 text-white' : 'bg-white text-gray-800') +
+      ' max-w-[85%] px-4 py-2 rounded-lg shadow-sm';
+
+    if (loading) {
+      bubble.innerHTML = '<em class="text-sm opacity-70">Typing…</em>';
+    } else if (content instanceof HTMLElement) {
+      bubble.appendChild(content);
+    } else {
+      bubble.textContent = rawText || content || '';
+    }
+
+    wrap.appendChild(bubble);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+  }
+
+  function createSkillCardsFromText(text) {
+    const blocks = text.split(/\n\s*\n/).filter(b => b.trim());
+    const hasSkill = blocks.some(b => /Skill[:\s]/i.test(b));
+    if (!hasSkill) return null;
+
+    const container = document.createElement('div');
+    container.className = 'space-y-3';
+
+    blocks.forEach(block => {
+      const titleMatch = block.match(/Skill[:\-\s]*([^\n\r]*)/i);
+      const descMatch = block.match(/Description[:\-\s]*([\s\S]*?)(?:Hourly Rate|Estimated Time|Estimated Cost|$)/i);
+      const rateMatch = block.match(/Hourly Rate[:\-\s]*([^\n\r]*)/i);
+      const timeMatch = block.match(/Estimated Time[:\-\s]*([^\n\r]*)/i);
+      const costMatch = block.match(/Estimated Cost[:\-\s]*([^\n\r]*)/i);
+
+      const card = document.createElement('div');
+      card.className = 'p-3 border rounded-lg shadow-sm';
+
+      const header = document.createElement('div');
+      header.className = 'flex items-center justify-between mb-1';
+      const title = document.createElement('div');
+      title.className = 'font-semibold';
+      title.textContent = (titleMatch && titleMatch[1].trim()) || 'Skill';
+      header.appendChild(title);
+
+      const meta = document.createElement('div');
+      meta.className = 'text-sm text-gray-500';
+      meta.textContent = rateMatch?.[1]?.trim() || '';
+      header.appendChild(meta);
+
+      card.appendChild(header);
+
+      if (descMatch?.[1]) {
+        const p = document.createElement('p');
+        p.className = 'text-sm text-gray-700 mb-2';
+        p.textContent = descMatch[1].trim();
+        card.appendChild(p);
+      }
+
+      const footer = document.createElement('div');
+      footer.className = 'flex gap-2 text-xs text-gray-600';
+
+      if (timeMatch?.[1]) {
+        const t = document.createElement('div');
+        t.textContent = `⏱ ${timeMatch[1].trim()}`;
+        footer.appendChild(t);
+      }
+      if (costMatch?.[1]) {
+        const c = document.createElement('div');
+        c.textContent = `💶 ${costMatch[1].trim()}`;
+        footer.appendChild(c);
+      }
+
+      if (footer.children.length) card.appendChild(footer);
+      container.appendChild(card);
+    });
+
+    return container;
+  }
+
+  if (history.length) {
+    history.forEach(m => {
+      if (m.from === 'bot' && m.text) {
+        const cards = createSkillCardsFromText(m.text);
+        if (cards) addMessage({ from: 'bot', content: cards });
+        else addMessage({ from: 'bot', rawText: m.text });
+      } else {
+        addMessage({ from: m.from, rawText: m.text });
+      }
+    });
+  }
+
+  function openChat() {
+    panel.classList.remove('hidden');
+    toggle.classList.add('hidden');
+    input.focus();
+  }
+  function closeChat() {
+    panel.classList.add('hidden');
+    toggle.classList.remove('hidden');
+  }
+  toggle?.addEventListener('click', openChat);
+  closeBtn?.addEventListener('click', closeChat);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.classList.add('hidden');
+
+    const text = input.value && input.value.trim();
+    if (!text) return;
+
+    addMessage({ from: 'user', rawText: text });
+    history.push({ from: 'user', text });
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    input.value = '';
+
+    const loadingBubble = addMessage({ from: 'bot', loading: true });
+
+    try {
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+      if (!res.ok) throw new Error('Network response not ok');
+
+      const data = await res.json();
+      if (!data) throw new Error('No response body');
+
+      const reply = data.reply ?? data.output ?? (typeof data === 'string' ? data : JSON.stringify(data));
+
+      const cards = createSkillCardsFromText(reply);
+      loadingBubble.remove();
+
+      if (cards) {
+        addMessage({ from: 'bot', content: cards, rawText: reply });
+      } else {
+        addMessage({ from: 'bot', rawText: reply });
+      }
+
+      history.push({ from: 'bot', text: reply });
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    } catch (err) {
+      loadingBubble.textContent = 'Error: ' + (err.message || err);
+      status.textContent = 'Submitting error — try again.';
+      status.classList.remove('hidden');
+      console.error('Chat client error:', err);
+    }
+  });
+})();
+
+
+</script>
+

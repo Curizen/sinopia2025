@@ -1,0 +1,65 @@
+<div class="max-w-6xl mx-auto my-10 p-6 bg-white rounded-3xl shadow-2xl">
+  <h1 class="text-3xl font-bold text-orange-600 mb-10 text-center">
+    <i class="fas fa-tasks mr-2"></i> <%= __('tasks.title') %>
+  </h1>
+
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-red-500 mb-4">
+      <i class="fas fa-hourglass-half mr-2"></i> <%= __('tasks.pending') %>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <% pendingTasks.forEach(task => { %>
+        <%- include('partials/pendingTaskCard', { task }) %>
+      <% }) %>
+    </div>
+  </section>
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-blue-500 mb-4">
+      <i class="fas fa-spinner mr-2"></i> <%= __('tasks.inProgress') %>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <% inProgressTasks.forEach(task => { %>
+        <%- include('partials/workingTaskCard', { task }) %>
+      <% }) %>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-xl font-semibold text-green-600 mb-4">
+      <i class="fas fa-check-circle mr-2"></i> <%= __('tasks.completed') %>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <% completedTasks.forEach(task => { %>
+        <%- include('partials/workingTaskCard', { task }) %>
+      <% }) %>
+    </div>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.subtask-checkbox').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const card = cb.closest('.task-card');
+    const checkboxes = card.querySelectorAll('.subtask-checkbox');
+    const done = Array.from(checkboxes).filter(c => c.checked).length;
+    const total = checkboxes.length;
+    const progress = Math.round((done / total) * 100);
+
+    const bar = card.querySelector('.progress-bar');
+    if(bar){
+      bar.style.width = progress + "%";
+      bar.classList.toggle('bg-green-500', progress === 100);
+      bar.classList.toggle('bg-orange-500', progress < 100);
+    }
+
+    const text = card.querySelector('.progress-text');
+    if(text){
+      text.innerHTML = `<i class="fas fa-chart-line mr-1 text-orange-400"></i> Progress: <span class="font-medium">${progress}%</span>`;
+    }
+
+    card.querySelectorAll('ul.subtasks li span').forEach((span, idx) => {
+      span.classList.toggle('line-through text-gray-400', checkboxes[idx].checked);
+    });
+  });
+});
+</script>

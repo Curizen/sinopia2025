@@ -1,0 +1,205 @@
+{
+	"welcome": "Welcome En",
+	"navbar": {
+		"home": "Home",
+		"about": "About",
+		"services": "Services",
+		"projects": "Projects",
+		"contact": "Contact",
+		"pricing": "Pricing",
+		"skillMatching": "Skill Matching",
+		"expertSearch": "Expert Search",
+		"teamConsulting": "Team Consulting",
+		"freelancerHiring": "Freelancer Hiring",
+		"login": "Login",
+		"logout": "Logout",
+		"signup": "Sign Up",
+		"languageSwitch": "DE",
+		"logoAlt": "Sinopia Logo",
+		"myTasks": "My Tasks",
+		"myProfile": "My Profile"
+	},
+	"chatbot": {
+		"title": "Sinopia Bot",
+		"sub_title": "How can I help you?"
+	},
+	"hero": {
+		"title": "Sinopia",
+		"description": "We connect skilled individuals with the companies that need them. Discover opportunities and help businesses reach the talent they are looking for.",
+		"joinNow": "Join Now",
+		"exploreServices": "Explore Services",
+		"stats": {
+			"activeTalents": "Active Talents",
+			"projectsCompleted": "Projects Completed",
+			"averageRating": "Average Rating",
+			"successRate": "Success Rate"
+		}
+	},
+	"whySinopia": {
+		"title": "Why Choose Sinopia?",
+		"subtitle": "We make it easier than ever to find and work with top talent",
+		"features": {
+			"verified": {
+				"title": "Verified Talents",
+				"desc": "All talents go through our rigorous verification process"
+			},
+			"matching": {
+				"title": "Smart Matching",
+				"desc": "AI-powered matching connects you with the perfect talent"
+			},
+			"payments": {
+				"title": "Secure Payments",
+				"desc": "Protected payments with milestone-based releases"
+			}
+		}
+	},
+	"cta": {
+		"title": "Ready to Get Started?",
+		"subtitle": "Join thousands of successful projects and find your perfect match today.",
+		"talentBtn": "Join as Talent",
+		"findBtn": "Find Talent"
+	},
+	"testimonials": {
+		"title": "What Our Users Say",
+		"subtitle": "See how Sinopia helped companies and talents succeed.",
+		"reviews": {
+			"jane": "Sinopia helped me find my dream project in record time!",
+			"john": "The platform made hiring top talent so easy and fast!",
+			"emily": "I got matched with the perfect project thanks to Sinopia!",
+			"michael": "Sinopia made the hiring process transparent and efficient."
+		}
+	},
+	"about": {
+		"title": "About Sinopia",
+		"subtitle": "Connecting skills with opportunities.",
+		"p1": "Sinopia is a platform that bridges the gap between talents and businesses. We help companies find the right people and give individuals opportunities to grow.",
+		"p2": "Our mission is to make hiring and project matching smarter, faster, and more transparent through AI-driven technology and verified talent.",
+		"p3": "Whether you're looking for the perfect job or the right person for your project, Sinopia is here to make the process seamless and efficient.",
+		"cta": "Join Us Today"
+	},
+	"contact": {
+		"title": "Contact",
+		"subtitle": "Get in touch with our team. We're here to help you succeed.",
+		"email": "Email",
+		"phone": "Phone",
+		"office": "Office",
+		"hours": "Business Hours",
+		"monday_friday": "Monday - Friday",
+		"saturday": "Saturday",
+		"sunday": "Sunday",
+		"closed": "Closed",
+		"send_message": "Send us a Message",
+		"full_name": "Full Name",
+		"full_name_placeholder": "John Doe",
+		"email_address": "Email Address",
+		"email_placeholder": "john@example.com",
+		"subject": "Subject",
+		"subject_placeholder": "How can we help you?",
+		"message": "Message",
+		"message_placeholder": "Tell us more about your inquiry...",
+		"send_button": "Send Message"
+	},
+	"myProfile": {
+		"email": "Email",
+		"linkedin": "LinkedIn",
+		"github": "GitHub",
+		"editInfo": "Edit Info",
+		"chooseCV": "Choose your CV (PDF, DOC, DOCX)",
+		"uploadCV": "Upload CV",
+		"about": "About",
+		"languages": "Languages",
+		"addLanguage": "Add Language",
+		"technicalSkills": "Technical Skills",
+		"personalSkills": "Personal Skills",
+		"addSkill": "Add Skill",
+		"experience": "Experience",
+		"addExperience": "Add Experience",
+		"education": "Certificates",
+		"addEducation": "Add Certificates",
+		"projects": "Projects",
+		"addProject": "Add Project",
+		"uploading": "Uploading and parsing CV...",
+		"parsing": "Parsing CV..."
+		},
+	"profile": {
+		"about": "About Me",
+		"skills": "Skills",
+		"experience": "Experience",
+		"education": "Education",
+		"certificates": "Certificates",
+		"email": "Email",
+		"linkedin": "LinkedIn",
+		"github": "GitHub",
+		"view": "View"
+	},
+	"tasks": {
+		"title": "My Tasks",
+		"progress": "Progress",
+		"approved": "Approved",
+		"notApproved": "Not Approved",
+		"pending": "tasks.pending",
+		"edit": "tasks.edit",
+		"upload": "tasks.upload",
+		"inProgress": "tasks.inProgress",
+		"completed": "tasks.completed"
+	},
+	"footer": {
+		"description": "Connecting skilled individuals with the companies that need them.",
+		"quick_links": "Quick Links",
+		"home": "Home",
+		"services": "Services",
+		"why_us": "Why Us",
+		"testimonials": "Testimonials",
+		"contact": "Contact",
+		"resources": "Resources",
+		"faq": "FAQ",
+		"blog": "Blog",
+		"pricing": "Pricing",
+		"terms": "Terms of Service",
+		"privacy": "Privacy Policy",
+		"follow_us": "Follow Us",
+		"copyright": "&copy; 2025 Sinopia. All rights reserved.",
+		"developed_by": "Developed by"
+	},
+	"login": {
+		"welcome": "Welcome back! Please login to your account.",
+		"email_placeholder": "Email",
+		"password_placeholder": "Password",
+		"forgot_password": "Forgot Password?",
+		"login_button": "Login",
+		"or": "or",
+		"no_account": "Don’t have an account?",
+		"signup_link": "Sign Up",
+		"title": "login.title",
+		"welcomeBack": "login.welcomeBack",
+		"email": "login.email",
+		"password": "login.password",
+		"signIn": "login.signIn",
+		"noAccount": "login.noAccount",
+		"createAccount": "login.createAccount"
+	},
+	"signup": {
+		"welcome": "Create your account and join Sinopia today!",
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"email": "Email",
+		"password": "Password",
+		"confirmPassword": "Confirm Password",
+		"createAccount": "Create Account",
+		"alreadyHaveAccount": "Already have an account?",
+		"login": "Login",
+		"or": "or",
+		"passwordMismatch": "Passwords do not match",
+		"selectRole": "signup.selectRole",
+		"title": "signup.title"
+	},
+	"signUp": {
+		"title": "signUp.title"
+	},
+	"home": {
+		"title": "home.title"
+	},
+	"rofile": {
+		"about": "rofile.about"
+	}
+}

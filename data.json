@@ -1,0 +1,43 @@
+{
+    "user": {
+        "user_id": 7358574785
+    },
+    "query": {
+        "personal_info": {
+            "name": "John Doe",
+            "location": "Amman, Jordan",
+            "phone": "+962 79 123 4567",
+            "email": "john.doe@example.com",
+            "github": "https://github.com/johndoe",
+            "linkedin": "https://linkedin.com/in/johndoe"
+        },
+        "education": [
+            {
+            "degree": "Bachelor of Computer Science",
+            "institution": "University of Jordan",
+            "year": "2018"
+            }
+        ],
+        "experience": [
+            {
+            "title": "Software Engineer",
+            "company": "Tech Company",
+            "years": "2019-2023",
+            "description": "Worked on web applications and APIs"
+            }
+        ],
+        "skills": {
+            "technical": ["JavaScript", "Node.js", "React"],
+            "personal": ["Teamwork", "Communication"]
+        },
+        "projects": [
+            {
+            "title": "Personal Portfolio",
+            "role": "Developer",
+            "description": "Built a personal portfolio website using React and Node.js"
+            }
+        ],
+        "languages": ["English", "Arabic"],
+        "about": "Passionate software engineer with experience in web development."
+    }
+}

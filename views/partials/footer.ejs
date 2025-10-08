@@ -1,0 +1,71 @@
+<footer class="w-full bg-gradient-to-b from-orange-950 via-gray-900 to-gray-900 text-gray-200 pt-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 lg:gap-16">
+
+    <!-- Logo Section -->
+    <div class="flex flex-col items-start lg:items-start gap-6 lg:w-1/4">
+      <a href="/" class="flex items-center">
+        <img 
+          src="/images/logo_sinopia.png" 
+          alt="Logo Sinopia" 
+          class="h-16 md:h-20 w-auto object-contain"
+        />
+      </a>
+      <p class="text-gray-400 text-sm md:text-base">
+        <!-- Optional description or slogan -->
+        Building smarter solutions for your business.
+      </p>
+    </div>
+
+    <!-- Links Section -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 flex-1">
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg md:text-xl font-semibold mb-4"><%= __('footer.quick_links') %></h3>
+        <ul class="space-y-2 text-sm md:text-base">
+          <li><a href="#hero" class="hover:text-orange-500 transition-colors"><%= __('footer.home') %></a></li>
+          <li><a href="#services" class="hover:text-orange-500 transition-colors"><%= __('footer.services') %></a></li>
+          <li><a href="#whySinopia" class="hover:text-orange-500 transition-colors"><%= __('footer.why_us') %></a></li>
+          <li><a href="#testimonials" class="hover:text-orange-500 transition-colors"><%= __('footer.testimonials') %></a></li>
+          <li><a href="/contact" class="hover:text-orange-500 transition-colors"><%= __('footer.contact') %></a></li>
+        </ul>
+      </div>
+
+      <!-- Resources / Support -->
+      <div>
+        <h3 class="text-lg md:text-xl font-semibold mb-4"><%= __('footer.resources') %></h3>
+        <ul class="space-y-2 text-sm md:text-base">
+          <li><a href="/faq" class="hover:text-orange-500 transition-colors"><%= __('footer.faq') %></a></li>
+          <li><a href="/blog" class="hover:text-orange-500 transition-colors"><%= __('footer.blog') %></a></li>
+          <li><a href="/pricing" class="hover:text-orange-500 transition-colors"><%= __('footer.pricing') %></a></li>
+          <li><a href="/terms" class="hover:text-orange-500 transition-colors"><%= __('footer.terms') %></a></li>
+          <li><a href="/privacy" class="hover:text-orange-500 transition-colors"><%= __('footer.privacy') %></a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div>
+        <h3 class="text-lg md:text-xl font-semibold mb-4"><%= __('footer.follow_us') %></h3>
+        <div class="flex space-x-4 text-2xl">
+          <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="mt-12 py-6 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-400 text-sm md:text-base">
+    <div class="text-center md:text-left">
+      <span><%= __('footer.copyright') %></span> &nbsp;|&nbsp; <%= __('footer.developed_by') %>
+    </div>
+
+    <a href="https://curizen.com" target="_blank" class="inline-flex items-center gap-2 border rounded-xl bg-white px-3 py-2 hover:bg-orange-500 transition-colors">
+      <img class="w-8 h-auto" src="/images/curizen-logo.png" alt="Curizen Logo">
+      <span class="text-xl font-bold text-black hover:text-white">urizen</span>
+    </a>
+  </div>
+</footer>

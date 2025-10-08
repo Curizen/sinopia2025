@@ -1,0 +1,93 @@
+<section id="contact" class="w-full bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Title -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-orange-600">
+        <%= __('contact.title') %>
+      </h2>
+      <p class="mt-4 text-gray-700 text-base sm:text-lg md:text-xl">
+        <%= __('contact.subtitle') %>
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+      <div class="flex flex-col gap-6 order-2 lg:order-1 md:col-span-1 justify-between">
+        <div class="flex items-center p-4 px-4 gap-4 border-2 border-orange-100 rounded-xl shadow-lg justify-start">
+          <i class="fas fa-envelope text-orange-600 text-2xl"></i>
+          <div class="w-full flex flex-col">
+            <h3 class="text-xl font-bold text-orange-600"><%= __('contact.email') %></h3>
+            <p class="text-gray-400 font-semibold">support@sinopia.com</p>
+          </div>
+        </div>
+        <div class="flex items-center p-4 px-4 gap-4 border-2 border-orange-100 rounded-xl shadow-lg justify-start">
+          <i class="fas fa-phone-alt text-orange-600 text-2xl"></i>
+          <div class="w-full flex flex-col">
+            <h3 class="text-xl font-bold text-orange-600"><%= __('contact.phone') %></h3>
+            <p class="text-gray-400 font-semibold">+1 (555) 123-4567</p>
+          </div>
+        </div>
+        <div class="flex items-center p-4 px-4 gap-4 border-2 border-orange-100 rounded-xl shadow-lg justify-start">
+          <i class="fas fa-map-marker-alt text-orange-600 text-2xl"></i>
+          <div class="w-full flex flex-col">
+            <h3 class="text-xl font-bold text-orange-600"><%= __('contact.office') %></h3>
+            <p class="text-gray-400 font-semibold">
+              123 Business Street<br>
+              Suite 100<br>
+              San Francisco, CA 94105
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center p-4 px-4 gap-4 border-2 border-orange-100 rounded-xl shadow-lg justify-start">
+          <i class="fas fa-clock text-orange-600 text-2xl"></i>
+          <div class="w-full flex flex-col">
+            <h3 class="text-xl font-bold text-orange-600"><%= __('contact.hours') %></h3>
+            <p class="text-gray-400 font-semibold">
+              <%= __('contact.monday_friday') %>: 9:00 AM - 6:00 PM<br>
+              <%= __('contact.saturday') %>: 10:00 AM - 4:00 PM<br>
+              <%= __('contact.sunday') %>: <%= __('contact.closed') %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-2 p-10 rounded-2xl shadow-lg border border-orange-100">
+        <h3 class="text-2xl font-bold text-gray-800 mb-8"><%= __('contact.send_message') %></h3>
+        <form action="/contact/send" method="POST" class="space-y-5">
+
+          <div class="relative">
+            <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-600"></i>
+            <input type="text" name="name" placeholder="<%= __('contact.full_name_placeholder') %>" 
+                   class="w-full pl-12 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:outline-none transition duration-300 bg-gray-50 shadow-sm">
+          </div>
+
+          <div class="relative">
+            <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-600"></i>
+            <input type="email" name="email" placeholder="<%= __('contact.email_placeholder') %>" 
+                   class="w-full pl-12 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:outline-none transition duration-300 bg-gray-50 shadow-sm">
+          </div>
+
+          <div class="relative">
+            <i class="fas fa-tag absolute left-4 top-1/2 transform -translate-y-1/2 text-orange-600"></i>
+            <input type="text" name="subject" placeholder="<%= __('contact.subject_placeholder') %>" 
+                   class="w-full pl-12 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:outline-none transition duration-300 bg-gray-50 shadow-sm">
+          </div>
+
+          <div class="relative">
+            <i class="fas fa-comment-dots absolute left-4 top-4 text-orange-600"></i>
+            <textarea name="message" rows="5" placeholder="<%= __('contact.message_placeholder') %>" 
+                      class="w-full pl-12 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:outline-none transition duration-300 bg-gray-50 shadow-sm resize-none"></textarea>
+          </div>
+
+          <button type="submit" 
+                  class="w-full bg-gradient-to-r from-orange-600 to-orange-500 text-white font-semibold py-3 rounded-2xl shadow-lg hover:from-orange-700 hover:to-orange-600 transition-all duration-300">
+            <%= __('contact.send_button') %>
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

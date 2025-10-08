@@ -1,0 +1,220 @@
+<!-- Navbar -->
+<nav class="fixed w-full top-0 z-50 shadow-sm shadow-orange-600"  
+    style="background: linear-gradient(to right, rgba(255, 205, 185, 0.9), rgba(255, 248, 239, 0.9), rgba(255, 196, 173, 0.9));">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-[70px] md:h-[100px]">
+
+      <!-- Logo -->
+      <div>
+        <div class="relative">
+          <a href="/" class="flex items-center">
+            <img 
+              src="/images/logo_sinopia.png" 
+              alt="<%= __('navbar.logoAlt') %>" 
+              class="h-auto w-28"
+            />
+          </a>  
+        </div>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex flex-grow items-end justify-center gap-6 h-full py-6">
+
+        <!-- Main Links -->
+        <a href="/" class="text-gray-700 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#D05423] hover:text-[#D05423]">
+          <%= __('navbar.home') %>
+        </a>
+        <a href="/about" class="text-gray-700 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#D05423] hover:text-[#D05423]">
+          <%= __('navbar.about') %>
+        </a>
+        <a href="/contact" class="text-gray-700 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#D05423] hover:text-[#D05423]">
+          <%= __('navbar.contact') %>
+        </a>
+
+        <% if (authorized) { %>
+          <a href="/account/tasks" class="text-gray-700 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#D05423] hover:text-[#D05423]">
+            <%= __('navbar.myTasks') %>
+          </a>
+        <% } %>
+
+        <!-- Services Dropdown -->
+        <div class="relative pt-2 hidden group">
+          <button id="services-btn" class="text-gray-700 py-2 flex items-center font-medium transition-colors duration-200">
+            <%= __('navbar.services') %>
+            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div id="services-menu" class="absolute hidden bg-white text-gray-800 rounded-lg shadow-lg min-w-[200px] py-1">
+            <a href="/services/skill-matching" class="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700 font-semibold">
+              <%= __('navbar.skillMatching') %>
+            </a>
+            <a href="/services/expert-search" class="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700 font-semibold">
+              <%= __('navbar.expertSearch') %>
+            </a>
+            <a href="/services/team-consulting" class="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700 font-semibold">
+              <%= __('navbar.teamConsulting') %>
+            </a>
+            <a href="/services/freelancer-hiring" class="block px-4 py-2 text-sm hover:bg-orange-50 hover:text-orange-700 font-semibold">
+              <%= __('navbar.freelancerHiring') %>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Section (User Actions + Language + Mobile Menu Button) -->
+      <div class="flex items-end space-x-2 h-full py-4">
+
+        <!-- Language -->
+        <div class="flex items-end">
+          <% if (currentLang === 'en') { %>
+            <a href="/language/change/de" class="px-2 py-1">
+              <img class="w-6 h-6 md:w-8 md:h-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg" 
+                  src="https://images.vexels.com/media/users/3/164056/isolated/preview/56f4034aadb54a8f811fe73fd9352813-germany-flag-language-icon-circle.png" alt="">
+            </a>
+          <% } else { %>
+            <a href="/language/change/en" class="px-2 py-1">
+              <img class="w-6 h-6 md:w-8 md:h-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg" 
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKokEnkW3y-qnUOOiWbGjRcPgaWwUIvYzqAQ&s" alt="">
+            </a>
+          <% } %>
+        </div>
+
+        <!-- Desktop User Actions -->
+        <% if (authorized) { %>
+          <% if (role == "employer") { %>
+            <a href="/client/my_profile" class="hidden md:flex relative overflow-hidden px-6 py-2 rounded-md border-2 border-[#D05423] text-[#CB410B] font-medium shadow-md transition-all duration-300 transform group bg-orange-50 hover:text-[#CB410B] hover:scale-105 hover:shadow-lg">
+              <span class="relative z-10"><%= __('navbar.myProfile') %></span>
+            </a>
+            <% } else { %>
+            <a href="/account/my_profile" class="hidden md:flex relative overflow-hidden px-6 py-2 rounded-md border-2 border-[#D05423] text-[#CB410B] font-medium shadow-md transition-all duration-300 transform group bg-orange-50 hover:text-[#CB410B] hover:scale-105 hover:shadow-lg">
+              <span class="relative z-10"><%= __('navbar.myProfile') %></span>
+            </a>
+          <% } %>
+
+          <a href="/auth/logout" class="hidden md:flex relative overflow-hidden px-6 py-2 rounded-md border-2 border-[#D05423] text-[#CB410B] font-medium shadow-md transition-all duration-300 transform group bg-orange-50 hover:text-[#CB410B] hover:scale-105 hover:shadow-lg">
+            <span class="relative z-10"><%= __('navbar.logout') %></span>
+          </a>
+        <% } else { %>
+          <a href="/account/login" class="hidden md:flex relative overflow-hidden px-6 py-2 rounded-md border-2 border-[#D05423] text-[#CB410B] font-medium shadow-md transition-all duration-300 transform group bg-orange-50 hover:text-[#CB410B] hover:scale-105 hover:shadow-lg h-12 items-center justify-center">
+            <span class="relative z-10"><%= __('navbar.login') %></span>
+          </a>
+
+          <a href="/account/signup" class="hidden md:flex relative overflow-hidden px-6 py-2 rounded-md text-white font-medium bg-gradient-to-r from-[#D05423] to-[#CB410B] shadow-md transition-all duration-300 transform group hover:from-[#CB410B] hover:to-[#D05423] hover:scale-105 hover:shadow-xl h-12 items-center justify-center">
+            <span class="relative z-10"><%= __('navbar.signup') %></span>
+          </a>
+        <% } %>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" class="relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none">
+            <span id="bar1" class="block w-5 md:w-6 h-[2px] bg-orange-800 rounded transition-all duration-300 origin-center"></span>
+            <span id="bar2" class="block w-5 md:w-6 h-[2px] bg-orange-800 rounded my-1 transition-all duration-300 origin-center"></span>
+            <span id="bar3" class="block w-5 md:w-6 h-[2px] bg-orange-800 rounded transition-all duration-300 origin-center"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+
+      <!-- Main Links -->
+      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.home') %></a>
+      <a href="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.about') %></a>
+      <a href="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.contact') %></a>
+
+      <!-- Services collapsible -->
+      <div>
+        <button id="mobile-services-btn" class="w-full hidden flex justify-between items-center px-3 py-2 text-gray-700 font-medium rounded-md hover:bg-gray-100 transition-colors">
+          <%= __('navbar.services') %>
+          <svg class="w-4 h-4 transition-transform duration-300" id="mobile-services-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="mobile-services-menu" class="max-h-0 overflow-hidden transition-all duration-300 pl-3 mt-1 space-y-1">
+          <a href="/services/skill-matching" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.skillMatching') %></a>
+          <a href="/services/expert-search" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.expertSearch') %></a>
+          <a href="/services/team-consulting" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.teamConsulting') %></a>
+          <a href="/services/freelancer-hiring" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"><%= __('navbar.freelancerHiring') %></a>
+        </div>
+      </div>
+
+      <!-- Mobile User Actions -->
+      <div class="pt-4 pb-3 border-t border-gray-200 flex flex-col sm:flex-row sm:flex-wrap md:justify-center gap-3 px-4 transition-all duration-300">
+        <% if (authorized) { %>
+          <a href="/account/my_profile" class="flex items-center justify-center relative overflow-hidden px-5 py-2 sm:px-6 sm:py-2.5 md:px-7 md:py-3 rounded-lg border-2 border-[#D05423] text-[#CB410B] font-semibold shadow-sm sm:shadow-md md:shadow-lg transition-all duration-300 transform group bg-orange-50 hover:text-[#CB410B] hover:scale-105 hover:shadow-xl">
+            <span class="relative z-10"><%= __('navbar.myProfile') %></span>
+          </a>
+
+          <a href="/auth/logout" class="flex items-center justify-center relative overflow-hidden px-5 py-2 sm:px-6 sm:py-2.5 md:px-7 md:py-3 rounded-lg border-2 border-[#CB410B] text-white font-semibold shadow-sm sm:shadow-md md:shadow-lg transition-all duration-300 transform group bg-[#CB410B] hover:bg-[#D05423] hover:text-white hover:scale-105 hover:shadow-xl">
+            <span class="relative z-10"><%= __('navbar.logout') %></span>
+          </a>
+        <% } else { %>
+          <a href="/account/login" class="flex items-center justify-center text-center overflow-hidden px-5 py-2 sm:px-6 sm:py-2.5 md:px-7 md:py-3 rounded-lg border-2 border-[#D05423] text-[#CB410B] font-semibold shadow-sm sm:shadow-md md:shadow-lg transition-all duration-300 transform group bg-orange-50 hover:text-[#CB410B] hover:scale-105 hover:shadow-xl">
+            <span class="relative z-10"><%= __('navbar.login') %></span>
+          </a>
+
+          <a href="/account/signup" class="flex items-center justify-center relative overflow-hidden px-5 py-2 sm:px-6 sm:py-2.5 md:px-7 md:py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-[#D05423] to-[#CB410B] shadow-sm sm:shadow-md md:shadow-lg transition-all duration-300 transform group hover:from-[#CB410B] hover:to-[#D05423] hover:scale-105 hover:shadow-xl">
+            <span class="relative z-10"><%= __('navbar.signup') %></span>
+          </a>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
+
+</nav>
+
+
+<!-- Scripts -->
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    btn.classList.toggle('border-2');
+    btn.classList.toggle('border-orange-800');
+    btn.classList.toggle('rounded-full');
+
+    bar1.classList.toggle('rotate-45');
+    bar1.classList.toggle('translate-y-1.5');
+    bar2.classList.toggle('opacity-0');
+    bar3.classList.toggle('-rotate-45');
+    bar3.classList.toggle('-translate-y-1.5');
+  });
+
+  // Mobile services collapse
+  const mobileServicesBtn = document.getElementById('mobile-services-btn');
+  const mobileServicesMenu = document.getElementById('mobile-services-menu');
+  const mobileServicesArrow = document.getElementById('mobile-services-arrow');
+
+  mobileServicesBtn.addEventListener('click', () => {
+    mobileServicesMenu.classList.toggle('max-h-0');
+    mobileServicesMenu.classList.toggle('max-h-screen');
+    mobileServicesArrow.classList.toggle('rotate-180');
+  });
+
+  // Desktop services dropdown
+  const servicesBtn = document.getElementById('services-btn');
+  const servicesMenu = document.getElementById('services-menu');
+
+  servicesBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    servicesMenu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', () => {
+    servicesMenu.classList.add('hidden');
+  });
+</script>

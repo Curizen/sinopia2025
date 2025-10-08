@@ -1,0 +1,36 @@
+<section id="about" class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-orange-600">
+            <%= __('about.title') %>
+        </h2>
+        <p class="mt-4 text-gray-700 text-base sm:text-lg md:text-xl">
+            <%= __('about.subtitle') %>
+        </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div class="flex justify-center">
+            <img src="https://professional.uchicago.edu/sites/default/files/images/2025-04/iStock-889968488.jpg" 
+                alt="About Sinopia" 
+                class="w-full max-w-md rounded-2xl shadow-xl">
+        </div>
+
+        <div class="space-y-6 text-gray-700 leading-relaxed text-base sm:text-lg">
+            <p><%= __('about.p1') %></p>
+            <p><%= __('about.p2') %></p>
+            <p><%= __('about.p3') %></p>
+        </div>
+        </div>
+
+        <div class="text-center mt-16">
+        <a href="/account/signup" 
+            class="px-8 py-4 bg-orange-600 text-white rounded-xl font-semibold shadow-lg hover:bg-orange-700 transition-all duration-300">
+            <%= __('about.cta') %>
+        </a>
+        </div>
+
+    </div>
+</section>

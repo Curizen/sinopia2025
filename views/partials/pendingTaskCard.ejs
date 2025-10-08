@@ -1,0 +1,40 @@
+<div class="task-card p-6 bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow hover:shadow-lg transition border border-gray-100">
+  <div class="flex justify-between items-center mb-3">
+    <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+      <i class="fas fa-clipboard-list mr-2 text-orange-500"></i> <%= task.title %>
+    </h2>
+    <span class="px-3 py-1 rounded-full text-xs font-medium tracking-wide bg-red-100 text-red-600">
+      <%= task.status %>
+    </span>
+  </div>
+
+  <% if(task.sender){ %>
+    <p class="text-xs text-gray-500 mb-2">
+      <i class="fas fa-user mr-1"></i> From: <%= task.sender %>
+      | Created: <%= task.createdAt %>
+    </p>
+  <% } %>
+
+  <p class="text-gray-600 text-sm mb-4 leading-relaxed"><%= task.description %></p>
+
+  <!-- subtasks كمعلومات فقط -->
+  <ul class="text-gray-500 text-sm mb-4 space-y-1">
+    <% task.subtasks.forEach(st => { %>
+      <li>• <%= st.text %></li>
+    <% }) %>
+  </ul>
+
+  <form action="/tasks/response" method="post" class="space-y-2">
+    <input type="hidden" name="taskTitle" value="<%= task.title %>" />
+    <label class="block text-sm text-gray-600">Estimated Time (hours):</label>
+    <input type="number" name="estimatedTime" min="0" class="w-full border rounded p-1 text-sm" required />
+    <div class="flex justify-between mt-2">
+      <button type="submit" name="action" value="approve" class="px-3 py-1 bg-green-500 text-white rounded-md text-xs hover:bg-green-600">
+        <i class="fas fa-check mr-1"></i> Approve
+      </button>
+      <button type="submit" name="action" value="reject" class="px-3 py-1 bg-red-500 text-white rounded-md text-xs hover:bg-red-600">
+        <i class="fas fa-times mr-1"></i> Reject
+      </button>
+    </div>
+  </form>
+</div>

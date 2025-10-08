@@ -1,0 +1,205 @@
+{
+	"welcome": "Willkommen",
+	"navbar": {
+		"home": "Startseite",
+		"about": "Über uns",
+		"services": "Dienstleistungen",
+		"projects": "Projekte",
+		"contact": "Kontakt",
+		"pricing": "Preise",
+		"skillMatching": "Fähigkeiten abgleichen",
+		"expertSearch": "Experten suchen",
+		"teamConsulting": "Teamberatung",
+		"freelancerHiring": "Freelancer einstellen",
+		"login": "Anmelden",
+		"logout": "Abmelden",
+		"signup": "Registrieren",
+		"languageSwitch": "EN",
+		"logoAlt": "Sinopia Logo",
+		"myTasks": "Meine Aufgaben",
+		"myProfile": "Mein Profil"
+	},
+	"chatbot": {
+		"title": "Sinopia Agentic AI",
+		"sub_title": "Wie kann ich dir helfen?"
+	},
+	"hero": {
+		"title": "Sinopia",
+		"description": "Wir verbinden qualifizierte Fachkräfte mit Unternehmen, die sie benötigen. Entdecken Sie Möglichkeiten und helfen Sie Unternehmen, das Talent zu finden, das sie suchen.",
+		"joinNow": "Jetzt beitreten",
+		"exploreServices": "Dienstleistungen erkunden",
+		"stats": {
+			"activeTalents": "Aktive Talente",
+			"projectsCompleted": "Abgeschlossene Projekte",
+			"averageRating": "Durchschnittliche Bewertung",
+			"successRate": "Erfolgsquote"
+		}
+	},
+	"whySinopia": {
+		"title": "Warum Sinopia wählen?",
+		"subtitle": "Wir machen es einfacher als je zuvor, Top-Talente zu finden und mit ihnen zu arbeiten",
+		"features": {
+			"verified": {
+				"title": "Verifizierte Talente",
+				"desc": "Alle Talente durchlaufen unseren strengen Verifizierungsprozess"
+			},
+			"matching": {
+				"title": "Intelligentes Matching",
+				"desc": "KI-gestütztes Matching verbindet Sie mit dem perfekten Talent"
+			},
+			"payments": {
+				"title": "Sichere Zahlungen",
+				"desc": "Geschützte Zahlungen mit Meilenstein-basierten Freigaben"
+			}
+		}
+	},
+	"cta": {
+		"title": "Bereit loszulegen?",
+		"subtitle": "Schließen Sie sich tausenden erfolgreichen Projekten an und finden Sie noch heute Ihr perfektes Match.",
+		"talentBtn": "Als Talent beitreten",
+		"findBtn": "Talent finden"
+	},
+	"testimonials": {
+		"title": "Was unsere Nutzer sagen",
+		"subtitle": "Sehen Sie, wie Sinopia Unternehmen und Talente zum Erfolg verholfen hat.",
+		"reviews": {
+			"jane": "Sinopia hat mir geholfen, mein Traumprojekt in Rekordzeit zu finden!",
+			"john": "Die Plattform machte es so einfach und schnell, Top-Talente einzustellen!",
+			"emily": "Dank Sinopia wurde ich mit dem perfekten Projekt gematcht!",
+			"michael": "Sinopia machte den Einstellungsprozess transparent und effizient."
+		}
+	},
+	"about": {
+		"title": "Über Sinopia",
+		"subtitle": "Fähigkeiten mit Möglichkeiten verbinden.",
+		"p1": "Sinopia ist eine Plattform, die die Lücke zwischen Talenten und Unternehmen schließt. Wir helfen Unternehmen, die richtigen Personen zu finden und bieten Einzelpersonen Möglichkeiten, sich weiterzuentwickeln.",
+		"p2": "Unsere Mission ist es, das Einstellen und Projekt-Matching durch KI-gestützte Technologie und verifizierte Talente intelligenter, schneller und transparenter zu gestalten.",
+		"p3": "Egal, ob Sie den perfekten Job suchen oder die richtige Person für Ihr Projekt benötigen – Sinopia macht den Prozess nahtlos und effizient.",
+		"cta": "Jetzt beitreten"
+	},
+	"contact": {
+		"title": "Kontakt",
+		"subtitle": "Kontaktieren Sie unser Team. Wir helfen Ihnen, erfolgreich zu sein.",
+		"email": "E-Mail",
+		"phone": "Telefon",
+		"office": "Büro",
+		"hours": "Öffnungszeiten",
+		"monday_friday": "Montag - Freitag",
+		"saturday": "Samstag",
+		"sunday": "Sonntag",
+		"closed": "Geschlossen",
+		"send_message": "Nachricht senden",
+		"full_name": "Vollständiger Name",
+		"full_name_placeholder": "Max Mustermann",
+		"email_address": "E-Mail-Adresse",
+		"email_placeholder": "max@example.com",
+		"subject": "Betreff",
+		"subject_placeholder": "Wie können wir Ihnen helfen?",
+		"message": "Nachricht",
+		"message_placeholder": "Erzählen Sie uns mehr über Ihre Anfrage...",
+		"send_button": "Nachricht senden"
+	},
+	"myProfile": {
+		"email": "E-Mail",
+		"linkedin": "LinkedIn",
+		"github": "GitHub",
+		"editInfo": "Informationen bearbeiten",
+		"chooseCV": "Wählen Sie Ihren Lebenslauf (PDF, DOC, DOCX)",
+		"uploadCV": "Lebenslauf hochladen",
+		"about": "Über mich",
+		"languages": "Sprachen",
+		"addLanguage": "Sprache hinzufügen",
+		"technicalSkills": "Technische Fähigkeiten",
+		"personalSkills": "Persönliche Fähigkeiten",
+		"addSkill": "Fähigkeit hinzufügen",
+		"experience": "Erfahrung",
+		"addExperience": "Erfahrung hinzufügen",
+		"education": "Zertifikate",
+		"addEducation": "Bildung Zertifikate",
+		"projects": "Projekte",
+		"addProject": "Projekt hinzufügen",
+		"uploading": "Laden",
+		"parsing": "Lebenslauf wird analysiert..."
+	},
+	"profile": {
+		"about": "Über mich",
+		"skills": "Fähigkeiten",
+		"experience": "Erfahrung",
+		"education": "Ausbildung",
+		"certificates": "Zertifikate",
+		"email": "E-Mail",
+		"linkedin": "LinkedIn",
+		"github": "GitHub",
+		"view": "Ansehen"
+	},
+	"tasks": {
+		"title": "Meine Aufgaben",
+		"progress": "Fortschritt",
+		"approved": "Genehmigt",
+		"notApproved": "Nicht genehmigt",
+		"pending": "tasks.pending",
+		"edit": "tasks.edit",
+		"upload": "tasks.upload",
+		"inProgress": "tasks.inProgress",
+		"completed": "tasks.completed"
+	},
+	"footer": {
+		"description": "Wir verbinden qualifizierte Fachkräfte mit Unternehmen, die sie benötigen.",
+		"quick_links": "Schnellzugriffe",
+		"home": "Startseite",
+		"services": "Dienstleistungen",
+		"why_us": "Warum wir",
+		"testimonials": "Referenzen",
+		"contact": "Kontakt",
+		"resources": "Ressourcen",
+		"faq": "FAQ",
+		"blog": "Blog",
+		"pricing": "Preise",
+		"terms": "Nutzungsbedingungen",
+		"privacy": "Datenschutz",
+		"follow_us": "Folgen Sie uns",
+		"copyright": "&copy; 2025 Sinopia. Alle Rechte vorbehalten.",
+		"developed_by": "Entwickelt von"
+	},
+	"login": {
+		"welcome": "Willkommen zurück! Bitte melden Sie sich an.",
+		"email_placeholder": "E-Mail",
+		"password_placeholder": "Passwort",
+		"forgot_password": "Passwort vergessen?",
+		"login_button": "Anmelden",
+		"or": "oder",
+		"no_account": "Sie haben kein Konto?",
+		"signup_link": "Registrieren",
+		"title": "login.title",
+		"welcomeBack": "login.welcomeBack",
+		"email": "login.email",
+		"password": "login.password",
+		"signIn": "login.signIn",
+		"noAccount": "login.noAccount",
+		"createAccount": "login.createAccount"
+	},
+	"signup": {
+		"welcome": "Erstellen Sie Ihr Konto und treten Sie noch heute Sinopia bei!",
+		"firstName": "Vorname",
+		"lastName": "Nachname",
+		"email": "E-Mail",
+		"password": "Passwort",
+		"confirmPassword": "Passwort bestätigen",
+		"createAccount": "Konto erstellen",
+		"alreadyHaveAccount": "Sie haben bereits ein Konto?",
+		"login": "Anmelden",
+		"or": "oder",
+		"passwordMismatch": "Passwörter stimmen nicht überein",
+		"selectRole": "signup.selectRole",
+		"title": "signup.title"
+	},
+	"signUp": {
+		"title": "signUp.title"
+	},
+	"home": {
+		"title": "home.title"
+	},
+	"rofile": {
+		"about": "rofile.about"
+	}
+}

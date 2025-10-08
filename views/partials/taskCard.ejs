@@ -1,0 +1,77 @@
+<div class="task-card p-6 bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow hover:shadow-lg transition border border-gray-100">
+  <!-- العنوان والحالة -->
+  <div class="flex justify-between items-center mb-3">
+    <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+      <i class="fas fa-clipboard-list mr-2 text-orange-500"></i> <%= task.title %>
+    </h2>
+    <span class="px-3 py-1 rounded-full text-xs font-medium tracking-wide 
+      <%= task.status === 'Completed' ? 'bg-green-100 text-green-700' : 
+           task.status === 'In Progress' ? 'bg-blue-100 text-blue-700' : 
+           'bg-red-100 text-red-600' %>">
+      <%= task.status %>
+    </span>
+  </div>
+
+  <!-- المرسل وتاريخ الإرسال إذا موجود -->
+  <% if(task.sender){ %>
+    <p class="text-xs text-gray-500 mb-1">
+      <i class="fas fa-user mr-1"></i> From: <%= task.sender %>
+      | Created: <%= task.createdAt %>
+    </p>
+  <% } %>
+
+  <!-- الوصف -->
+  <p class="text-gray-600 text-sm mb-4 leading-relaxed"><%= task.description %></p>
+
+  <!-- شريط التقدم -->
+  <div class="w-full bg-gray-200 rounded-full h-2.5 mb-3">
+    <div class="progress-bar h-2.5 rounded-full transition-all duration-500
+      <%= task.progress === 100 ? 'bg-green-500' : 'bg-orange-500' %>"
+      style="width:<%= task.progress %>%">
+    </div>
+  </div>
+  <p class="progress-text text-xs text-gray-500 mb-4">
+    <i class="fas fa-chart-line mr-1 text-orange-400"></i> Progress: <span class="font-medium"><%= task.progress %>%</span>
+  </p>
+
+  <!-- المهام الفرعية -->
+  <ul class="subtasks space-y-2 mb-4">
+    <% task.subtasks.forEach((st, idx) => { %>
+      <li class="flex items-center space-x-2">
+        <input type="checkbox" 
+               class="subtask-checkbox w-4 h-4 text-orange-600 border-gray-300 rounded" 
+               data-task="<%= task.title %>" 
+               <%= st.done ? 'checked' : '' %>>
+        <span class="<%= st.done ? 'line-through text-gray-400' : '' %>"><%= st.text %></span>
+      </li>
+    <% }) %>
+  </ul>
+
+  <!-- التفاصيل السفلية -->
+  <div class="flex justify-between items-center text-xs text-gray-500 mt-2 mb-4">
+    <p><i class="far fa-calendar-alt mr-1 text-gray-400"></i> Deadline: <%= task.deadline %></p>
+    <p>
+      <i class="fas fa-check-circle mr-1 <%= task.approved ? 'text-green-500' : 'text-red-400' %>"></i>
+      <%= task.approved ? __('tasks.approved') : __('tasks.notApproved') %>
+    </p>
+  </div>
+
+  <!-- الأزرار -->
+  <div class="flex justify-between items-center">
+    <% if(task.status === 'Pending Approval'){ %>
+      <button class="px-3 py-1 bg-green-500 text-white rounded-md text-xs hover:bg-green-600">
+        <i class="fas fa-check mr-1"></i> Approve
+      </button>
+      <button class="px-3 py-1 bg-red-500 text-white rounded-md text-xs hover:bg-red-600">
+        <i class="fas fa-times mr-1"></i> Reject
+      </button>
+    <% } %>
+
+    <form action="/tasks/upload" method="post" enctype="multipart/form-data" class="flex items-center">
+      <input type="file" name="file" class="text-xs text-gray-500" />
+      <button type="submit" class="ml-2 px-3 py-1 bg-orange-500 text-white rounded-md text-xs hover:bg-orange-600">
+        <i class="fas fa-upload mr-1"></i> Upload
+      </button>
+    </form>
+  </div>
+</div>

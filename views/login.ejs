@@ -1,0 +1,100 @@
+<div class="font-sans w-full py-10 flex items-center justify-center relative">
+    <div class="bg-white shadow-2xl rounded-3xl w-full max-w-md p-10 mx-4 sm:mx-0">
+
+        <div class="b-8 flex items-center justify-center mb-8 flex-col gap-6">
+            <div class="relative">
+                <a href="/" class="flex items-center">
+                <img 
+                    src="/images/logo_sinopia.png" 
+                    alt="Logo Sinopia" 
+                    class="h-auto w-28"
+                />
+                </a>  
+            </div>
+            <p class="text-gray-600 mt-3 text-sm sm:text-base">
+                <%= __('login.welcome') %>
+            </p>
+        </div>
+
+        <form action="/auth/signin" method="POST" class="space-y-6" autocomplete="off">
+
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <input type="email" name="email" placeholder="<%= __('login.email_placeholder') %>" required autocomplete="off"
+                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-100 focus:outline-none transition">
+            </div>
+
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <input type="password" id="password" name="password" placeholder="<%= __('login.password_placeholder') %>" required autocomplete="new-password"
+                       class="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-100 focus:outline-none transition">
+                <button type="button" onclick="togglePassword('password')" 
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-eye" id="password-icon"></i>
+                </button>
+            </div>
+
+            <div id="message" class="text-sm text-red-600"></div>
+
+            <div class="text-left">
+                <a href="/forgot-password" class="text-sm text-orange-600 hover:text-orange-700 hover:underline transition">
+                    <%= __('login.forgot_password') %>
+                </a>
+            </div>
+
+            <button type="submit" id="loginBtn"
+                class="w-full py-3 bg-orange-600 text-white rounded-xl font-semibold shadow-md hover:bg-orange-700 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 flex justify-center items-center gap-2">
+                <span id="loginText"><%= __('login.login_button') %></span>
+                <svg id="loginSpinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+            </button>
+
+        </form>
+
+        <div class="flex items-center my-6">
+            <hr class="flex-grow border-gray-300">
+            <span class="mx-3 text-gray-400 text-sm"><%= __('login.or') %></span>
+            <hr class="flex-grow border-gray-300">
+        </div>
+
+        <p class="text-center text-gray-600 text-sm sm:text-base">
+            <%= __('login.no_account') %> 
+            <a href="/account/signUp" class="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition">
+                <%= __('login.signup_link') %>
+            </a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+function togglePassword(id) {
+    const input = document.getElementById(id);
+    const icon = document.getElementById(id + '-icon');
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+const form = document.querySelector('form');
+const loginBtn = document.getElementById('loginBtn');
+const loginText = document.getElementById('loginText');
+const loginSpinner = document.getElementById('loginSpinner');
+
+form.addEventListener('submit', function(e) {
+    loginSpinner.classList.remove('hidden');
+
+    loginBtn.disabled = true;
+});
+</script>

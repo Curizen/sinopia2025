@@ -1,0 +1,166 @@
+<div class="flex w-full justify-center items-center">
+    <div class="bg-white shadow-2xl rounded-3xl w-full max-w-md p-10 mx-4 sm:mx-0 my-10">
+        
+        <div class="b-8 flex items-center mb-8 flex-col gap-6">
+            <div class="relative">
+                <a href="/" class="flex items-center">
+                <img 
+                    src="/images/logo_sinopia.png" 
+                    alt="Logo Sinopia" 
+                    class="h-auto w-28"
+                />
+                </a>  
+            </div>
+
+            <p class="text-gray-600 mt-3 text-sm sm:text-base"><%= __('signup.welcome') %></p>
+            <% if (error) { %>
+            <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+                <%= error %>
+            </div>
+            <% } %>
+
+        </div>
+
+        <form action="/auth/signup" method="POST" class="space-y-6" autocomplete="off">
+
+            <div class="mb-6">
+            <div class="flex w-full bg-gray-200 rounded-full p-1 text-sm font-medium text-gray-700">
+                
+                <div 
+                    id="candidateOption" 
+                    class="flex-1 text-center py-2 rounded-full cursor-pointer transition-all duration-300 bg-orange-600 text-white">
+                    Candidate
+                </div>
+                <div 
+                id="employerOption" 
+                class="flex-1 text-center py-2 border hover:border-orange-300 hover:text-orange-600 rounded-full cursor-pointer transition-all duration-300 hover:bg-orange-100">
+                Employer
+                </div>
+            </div>
+
+            <input type="hidden" name="role" id="roleInput" value="candidate">
+            </div>
+
+
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <input type="email" name="email" placeholder="<%= __('signup.email') %>" required
+                    class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:border-orange-600 focus:ring-2 focus:ring-orange-100 focus:outline-none transition">
+            </div>
+
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <input type="password" id="password" name="password" placeholder="<%= __('signup.password') %>" required
+                        class="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-300 focus:border-orange-600 focus:ring-2 focus:ring-orange-100 focus:outline-none transition">
+                <span class="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer" onclick="togglePassword('password')">
+                    <i id="password-icon" class="fas fa-eye"></i>
+                </span>
+            </div>
+
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="<%= __('signup.confirmPassword') %>" required
+                        class="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-300 focus:border-orange-600 focus:ring-2 focus:ring-orange-100 focus:outline-none transition">
+                <span class="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer" onclick="togglePassword('confirmPassword')">
+                    <i id="confirmPassword-icon" class="fas fa-eye"></i>
+                </span>
+            </div>
+            <p id="password-error" class="text-red-500 text-sm mt-1 hidden"><%= __('signup.passwordMismatch') %></p>
+
+            <button type="submit"
+                class="w-full py-3 bg-orange-600 text-white rounded-xl font-semibold shadow-md hover:bg-orange-600 hover:shadow-lg transition-all duration-300">
+                <%= __('signup.createAccount') %>
+            </button>
+        </form>
+        <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center hidden z-50">
+            <div class="w-16 h-16 border-4 border-t-orange-600 border-gray-200 rounded-full animate-spin mb-4"></div>
+            <p class="text-white text-lgfont-medium text-center">Please wait... Check your email to confirm the account</p>
+        </div>
+        <div class="flex items-center my-6">
+            <hr class="flex-grow border-gray-300">
+            <span class="mx-3 text-gray-400 text-sm"><%= __('signup.or') %></span>
+            <hr class="flex-grow border-gray-300">
+        </div>
+
+        <p class="text-center text-gray-600 text-sm sm:text-base">
+            <%= __('signup.alreadyHaveAccount') %> 
+            <a href="/account/login" class="text-orange-600 font-semibold hover:text-orange-700 hover:underline transition"><%= __('signup.login') %></a>
+        </p>
+    </div>
+</div>
+<script>
+    function togglePassword(id) {
+        const input = document.getElementById(id);
+        const icon = document.getElementById(id + '-icon');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+
+    const form = document.querySelector('form');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const errorMsg = document.getElementById('password-error');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const signupBtn = document.getElementById('signup-btn');
+
+    confirmPasswordInput.addEventListener('input', () => {
+        if (confirmPasswordInput.value && confirmPasswordInput.value !== passwordInput.value) {
+            errorMsg.classList.remove('hidden');
+        } else {
+            errorMsg.classList.add('hidden');
+        }
+    });
+
+    passwordInput.addEventListener('input', () => {
+        if (confirmPasswordInput.value && confirmPasswordInput.value !== passwordInput.value) {
+            errorMsg.classList.remove('hidden');
+        } else {
+            errorMsg.classList.add('hidden');
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            e.preventDefault();
+            errorMsg.classList.remove('hidden');
+            confirmPasswordInput.focus();
+        } else {
+            loadingOverlay.classList.remove('hidden');
+            signupBtn.disabled = true;
+        }
+    });
+</script>
+<script>
+    const employer = document.getElementById('employerOption');
+    const candidate = document.getElementById('candidateOption');
+    const roleInput = document.getElementById('roleInput');
+
+    employer.addEventListener('click', () => {
+        employer.classList.add('bg-orange-600', 'text-white');
+        employer.classList.remove('border', 'hover:bg-orange-100', 'hover:text-orange-600');
+        candidate.classList.remove('bg-orange-600', 'text-white');
+        candidate.classList.add('hover:bg-orange-100');
+        roleInput.value = 'employer';
+    });
+
+    candidate.addEventListener('click', () => {
+        candidate.classList.add('bg-orange-600', 'text-white');
+        employer.classList.remove('border', 'hover:bg-orange-100', 'hover:text-orange-600');
+        employer.classList.remove('bg-orange-600', 'text-white');
+        employer.classList.add('hover:bg-orange-100');
+        roleInput.value = 'candidate'; 
+    });
+</script>
