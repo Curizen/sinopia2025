@@ -10,13 +10,15 @@ const crypto = require('crypto');
 
 const app = express();
 const PORT = 3000;
+const RedisStore = require('connect-redis')(session);
 
 app.use(session({
-  secret: 'h97ugh4ugiuengu9ejg3o4gjipgejndbihyfuge674htfixj3ciptvj480tj',
+  store: new RedisStore({ client: redisClient }),
+  secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } 
+  saveUninitialized: false
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
