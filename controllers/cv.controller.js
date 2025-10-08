@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const pdf = require('pdf-parse');
+const pdfjsLib = require('pdfjs-dist');
 const axios = require('axios');
 
 let lastParsedCVs = {};
@@ -14,74 +14,18 @@ exports.uploadCV = async (req, res) => {
 
     let text = '';
     if (cvFile.mimetype === 'application/pdf') {
-      const dataBuffer = fs.readFileSync(uploadPath);
-      const pdfData = await pdf(dataBuffer);
-      text = pdfData.text;
+      const data = new Uint8Array(fs.readFileSync(uploadPath));
+      const pdfDoc = await pdfjsLib.getDocument({ data }).promise;
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        const page = await pdfDoc.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map(item => item.str).join(' ') + '\n';
+      }
     } else {
       text = fs.readFileSync(uploadPath, 'utf8');
     }
 
-    const prompt = `
-    You are a CV parser. Parse the following CV text and RETURN ONLY a single valid JSON object (no explanations, no code fences, no extra text).
-    The JSON must match this exact structure and key names/typing. Fill values extracted from the CV text; if a value is not present in the CV, set it to an empty string "" for strings, an empty array [] for lists, or the exact key structure with appropriate empty fields. Dates/years may be strings. DO NOT change keys or types.
-
-    Template to return (fill it; keep exact keys and types):
-
-    {
-      "personal_info": {
-        "name": "",
-        "location": "",
-        "phone": "",
-        "email": "",
-        "github": "",
-        "linkedin": ""
-      },
-      "education": [
-        {
-          "degree": "",
-          "institution": "",
-          "year": ""
-        }
-      ],
-      "experience": [
-        {
-          "title": "",
-          "company": "",
-          "years": "",
-          "description": ""
-        }
-      ],
-      "skills": {
-        "technical": [],
-        "personal": []
-      },
-      "projects": [
-        {
-          "title": "",
-          "role": "",
-          "description": ""
-        }
-      ],
-      "languages": [],
-      "about": ""
-    }
-
-    Instructions:
-    1. Respond ONLY with the JSON object exactly matching the template above (no additional keys, no wrapper).
-    2. For sections with multiple items (education, experience, projects, skills lists, languages) return arrays. If only one item found, return array with single object. If none found, return an empty array [].
-    3. For string fields that aren't present in the CV, return empty string "".
-    4. For skills.technical and skills.personal return an array of strings (e.g. ["Python", "SQL"]). If none, return [].
-    5. For languages return an array of strings like ["Arabic: Native", "English: B2"] or an empty array.
-    6. Keep years/dates as strings exactly as found (e.g. "2020 – 2023" or "2024").
-    7. Remove any bullets, numbering, extra whitespace; keep plain text.
-    8. Ensure the final output is valid JSON parsable by JSON.parse().
-
-    CV TEXT:
-    <<<START_CV_TEXT>>>
-    ${text}
-    <<<END_CV_TEXT>>>
-    `;
-
+    const prompt = `...`; // نفس الـ prompt الذي كتبته سابقًا
 
     const response = await axios.post(
       'https://api.openai.com/v1/chat/completions',
@@ -105,7 +49,7 @@ exports.uploadCV = async (req, res) => {
     try {
       parsedCV = JSON.parse(response.data.choices[0].message.content);
     } catch {
-      parsedCV = defaultCVJSON;
+      parsedCV = {}; // يمكن وضع defaultCVJSON هنا
     }
 
     const userId = req.body.user_id;

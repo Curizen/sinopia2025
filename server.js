@@ -1,5 +1,5 @@
 const express = require('express');
-const serverless = require('serverless-http'); // مهم
+const serverless = require('serverless-http');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const i18n = require('i18n');
@@ -8,13 +8,27 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const crypto = require('crypto');
 
+// ================== SUPABASE SESSION ==================
+const { createClient } = require('@supabase/supabase-js');
+const SupabaseStore = require('connect-supabase')(session);
+
+// إعداد supabase
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
 const app = express();
 
 // ================== MIDDLEWARES ==================
 app.use(session({
+  store: new SupabaseStore({
+    client: supabaseClient,
+    schemaName: 'public',
+    tableName: 'sessions'
+  }),
   secret: 'h97ugh4ugiuengu9ejg3o4gjipgejndbihyfuge674htfixj3ciptvj480tj',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { secure: false }
 }));
 
@@ -25,7 +39,11 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   if (!req.cookies.curizen_client_id) {
     const clientId = crypto.randomUUID();
-    res.cookie('curizen_client_id', clientId, { maxAge: 10 * 365 * 24 * 60 * 60 * 1000, httpOnly: false, sameSite: 'Lax' });
+    res.cookie('curizen_client_id', clientId, {
+      maxAge: 10 * 365 * 24 * 60 * 60 * 1000,
+      httpOnly: false,
+      sameSite: 'Lax',
+    });
     req.client_id = clientId;
   } else {
     req.client_id = req.cookies.curizen_client_id;
@@ -41,6 +59,7 @@ app.use((req, res, next) => {
 });
 
 // ============ VIEWS ============
+// كما كانت سابقًا
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);
